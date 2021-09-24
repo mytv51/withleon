@@ -1,0 +1,522 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* =====================
+  Base
+===================== */
+
+body {
+	color: #333;
+	font-size: 1.6rem;
+	background-color: #fff;
+}
+body, a, dd, div, dt, h1, h2, h3, h4, h5, h6, html, label, li, p, span, td, th {
+	font-family: "游ゴシック", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro", "メイリオ", "ＭＳ ゴシック", sans-serif;
+	line-height: 1.6;
+	font-weight: 500;
+}
+main {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	margin-top: 110px;
+}
+a {
+	display: inline-block;
+	text-decoration:none;
+	transition: 0.3s ease-in-out;
+	color: #333;
+	backface-visibility: hidden;
+}
+a {
+	outline:none;
+}
+a img {
+	outline:none;
+}
+a:hover {
+	text-decoration: none;
+	transition: 0.3s ease-in-out;
+	opacity: 0.8;
+	color: #333;
+}
+a:link ,
+a:visited {
+	text-decoration: none!important;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+figure {
+	margin: 0;
+}
+.container {
+	margin: 0 auto;
+	max-width: 1120px;
+	width: 100%;
+}
+.container-inner {
+	margin: 0 auto;
+	max-width: 1000px;
+	width: 100%;
+}
+.container-fluid::after, .container::after, .row::after {
+    display: none;
+}
+/* scroll bar */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-thumb {
+	cursor: pointer;
+	background: #333;
+	border-radius:10px;
+}
+::-moz-selection {
+  background-color:aliceblue;
+  text-shadow: none;
+}
+::selection {
+  background-color: aliceblue;
+  text-shadow: none;
+}
+
+/* =====================
+  汎用クラス
+===================== */
+.bold {
+	font-weight: bold;
+}
+.en {
+  font-family: "ten-mincho", serif;
+  font-feature-settings: "ss02";
+}
+.sp {
+	display: none!important;
+}
+/* btn */
+.btn-wrap {
+	text-align: center;
+	line-height: 1;
+}
+.btn {
+	padding: 20px 0;
+	max-width: 210px;
+	width: 100%;
+	display: inline-block;
+	border-radius: 14px;
+	position: relative;
+	z-index: 0;
+	color: #fff !important;
+	letter-spacing: 0.1em;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+.btn.orange {
+	background-color: #F29100;
+}
+.btn.black {
+	background-color: #333;
+}
+.btn .blank:after {
+	content: url("../images/common/icon_blank.svg");
+	position: relative;
+	top: 2px;
+	right: -20px;
+}
+.btn .download:after {
+	content: url("../images/common/icon_dl.svg");
+	position: relative;
+	top: 2px;
+	right: -3px;
+}
+.btn:hover {
+	opacity: 1;
+	letter-spacing: 0.15em;
+}
+.anim {
+	-moz-transform: translateY(-50%) translateX(-50%);
+	-ms-transform: translateY(-50%) translateX(-50%);
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: -1;
+}
+.anim:before {
+	position: relative;
+	content: '';
+	display: block;
+	margin-top: 100%;
+}
+.anim:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-radius: 50%;
+}
+a:hover > .anim {
+	-moz-animation: anim-out 0.75s;
+	-webkit-animation: anim-out 0.75s;
+	animation: anim-out 0.75s;
+}
+a:hover > .anim:after {
+	-moz-animation: anim-out-pseudo 0.75s;
+	-webkit-animation: anim-out-pseudo 0.75s;
+	animation: anim-out-pseudo 0.75s;
+}
+@-webkit-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-moz-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-ms-keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes anim-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-moz-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@-ms-keyframes anim-out-pseudo {
+  0% {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@keyframes anim-out-pseudo {
+  0% {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+
+/* =====================
+  fade
+===================== */
+.fade-box {
+    visibility: hidden;
+}
+.fade {
+    animation-fill-mode: both;
+    animation-duration: 1s;
+    animation-name: fade;
+    visibility: visible !important;
+}
+@keyframes fade {
+    0% { opacity: 0; transform: translateY(40px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+
+/* =====================
+  fade
+===================== */
+main .img-wrap {
+	overflow: hidden;
+}
+main .img-wrap img {
+	transform: scale(1);
+	transition: all 0.4s ease;
+}
+main a:hover .img-wrap img {
+	transform: scale(1.1);
+}
+
+
+/* =====================
+  footer
+===================== */
+footer {
+	background-color: #333;
+}
+footer * ,
+footer *:hover {
+	color: #fff;
+}
+footer .copy {
+	padding: 12px 0;
+	font-size: 1.2rem;
+	text-align: center;
+}
+footer .foot-nav {
+	background-color: #FBFBFB;
+	padding: 40px 0;
+}
+footer .foot-nav * ,
+footer .foot-nav *:hover {
+	color: #333;
+}
+footer .foot-nav .container {
+	display: flex;
+	justify-content: space-between;
+}
+footer .foot-nav .company {
+	display: flex;
+	align-items: center;
+}
+footer .foot-nav .company a img {
+	width: 60px;
+	height: 60px;
+}
+footer .foot-nav .company .detail {
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px;
+}
+footer .foot-nav .company .detail .access {
+	font-size: 1.4rem;
+	margin-top: 5px;
+}
+footer .foot-nav .link {
+	display: flex;
+	flex-direction: column-reverse;
+}
+footer .foot-nav .link ul {
+	display: flex;
+}
+footer .foot-nav .link ul li {
+	margin-right: 20px;
+}
+footer .foot-nav .link ul li:last-child {
+	margin-right: 0;
+}
+footer .foot-nav .link a {
+	font-size: 1.4rem;
+	text-decoration: underline!important;
+}
+footer .foot-nav .link a:hover {
+	text-decoration: none!important;
+}
+
+
+/* =====================
+  pegeTop
+===================== */
+.pagetop {
+	display: none;
+}
+.pagetop a {
+	position: fixed;
+	bottom: 60px;
+	right: 60px;
+	z-index: 100;
+	width: 60px;
+	height: 60px;
+	background-color: #454545;;
+	text-align: center;
+	opacity: 1;
+}
+.pagetop a span {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border-top: 2px solid #fff;
+	border-right: 2px solid #fff;
+	-webkit-transform: rotate(315deg);
+	transform: rotate(315deg);
+	margin-top: 27px;
+	transition: 0.3s ease-in-out;
+}
+.pagetop a:hover span {
+	margin-top: 22px;
+}
+
+
+/* ====================================================================================
+         SP時
+  ==================================================================================== */
+@media screen and (max-width: 767px) {
+	
+/* =====================
+  Base
+===================== */
+	body {
+		font-size: 1.4rem;
+	}
+	body, a, dd, div, dt, h1, h2, h3, h4, h5, h6, html, label, li, p, span, td, th {
+		line-height: 1.4;
+	}
+	main {
+		margin-top: 50px;
+	}
+	
+/* =====================
+  汎用クラス
+===================== */
+	.pc {
+		display: none!important;
+	}
+	.sp {
+		display: block!important;
+	}
+	.inner-responsive {
+		overflow-x: scroll;
+		display: block;
+	}
+/* btn */
+	.btn {
+		padding: 15px 0;
+		max-width: 180px;
+	}
+	.arrow-btn {
+		font-size: 1.4rem;
+	}
+	.arrow-btn i {
+		width: 60px;
+		height: 60px;
+		margin-left: 20px;
+	}
+	.arrow-btn i {
+		width: 60px;
+		height: 60px;
+		margin-left: 20px;
+	}
+	.arrow-btn i img {
+		width: 15px;
+	}
+
+	
+/* =====================
+  footer
+===================== */
+	footer .copy {
+		font-size: 1rem;
+		padding: 12px 0;
+	}
+	footer .foot-nav {
+		padding: 20px 0;
+	}
+	footer .foot-nav .container {
+		display: block;
+	}
+	footer .foot-nav .company {
+		align-items: flex-start;
+		margin-bottom: 20px;
+	}
+	footer .foot-nav .company a img {
+		width: 45px;
+		height: 45px;
+	}
+	footer .foot-nav .company .detail {
+		margin-left: 10px;
+	}
+	footer .foot-nav .company .detail .access {
+		font-size: 1.2rem;
+	}
+	footer .foot-nav .link {
+		flex-direction: inherit;
+		justify-content: center;
+	}
+	footer .foot-nav .link ul li {
+		margin-right: 10px;
+	}
+	footer .foot-nav .link a {
+		font-size: 1.2rem;
+	}
+
+	
+/* =====================
+  pegeTop
+===================== */
+	.pagetop a {
+		width: 40px;
+		height: 40px;
+		right: 10px;
+		bottom: 20px;
+	}
+	.pagetop a span {
+		width: 7px;
+		height: 7px;
+		margin-top: 18px;
+	}
+
+}
+
+
+@media screen and (max-width: 1140px) {
+	.container {
+		padding: 0 20px!important;
+		max-width: 100%;
+	}
+	.container-inner {
+		padding: 0 20px;
+		max-width: 100%;
+	}
+}
+
+
+/* ====================================================================================
+         ipad
+  ==================================================================================== */
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {	
+	.pc {
+		display: block!important;
+	}
+	.sp {
+		display: none;
+	}
+	
+main {
+    margin-top: 50px;
+}
+
+footer .fix-copy {
+    display: none!important;
+}
+	
+	
+	
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+	
+
+}

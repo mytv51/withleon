@@ -1,0 +1,157 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* =====================
+  common
+===================== */
+main .ttl-wrap {
+	position: relative;
+}
+main .ttl-wrap .sec-ttl {
+	font-size: 2.8rem;
+	font-weight: 400;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+	margin-bottom: 20px;
+}
+main .ttl-wrap .sec-ttl.white {
+	color: #fff;
+}
+main .ttl-wrap .en {
+	position: absolute;
+	color: #F5F4F3;
+	letter-spacing: 0;
+	line-height: 0.8;
+	z-index: -1;
+	opacity: 0;
+	transition: 1s ease-in-out;
+}
+main .ttl-wrap .en.anime {
+	opacity: 1;
+	letter-spacing: 1rem;
+}
+main .movie-area .ttl-wrap .en ,
+main .map-area .ttl-wrap .en ,
+main .ttl-wrap.room .en {
+	transition: 2s ease-in-out;
+}
+main .ttl-wrap.room .en.anime {
+	letter-spacing: 0.4rem;
+}
+
+
+/* =====================
+  policy-area
+===================== */
+.policy-area {
+	margin-bottom: 120px;
+}
+.policy-area .ttl-wrap .sec-ttl {
+	margin-bottom: 60px;
+}
+.policy-area .ttl-wrap .en {
+	font-size: 12rem;
+	top: 0;
+	right: 0;
+}
+.policy-area .content-wrap .list-wrap {
+	margin-top: 60px;
+	background-color: #fff;
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.03);
+	padding: 60px;
+	margin-bottom: 60px;
+}
+.policy-area .content-wrap .list-wrap .content {
+	margin-bottom: 80px;
+}
+.policy-area .content-wrap .list-wrap .content:last-child {
+	margin-bottom: 0;
+}
+.policy-area .content-wrap .list-wrap .content h3 {
+	font-size: 2rem;
+	margin-bottom: 20px;
+}
+.policy-area .content-wrap .list-wrap .content p {
+	margin-bottom: 20px;
+}
+.policy-area .content-wrap .list-wrap .content ol li {
+	margin-bottom: 15px;
+	text-indent: -1em;
+	padding-left: 1em;
+}
+.policy-area .content-wrap .list-wrap .content ol li:last-child {
+	margin-bottom: 0;
+}
+.policy-area .content-wrap .list-wrap .content ol li ol {
+	margin: 20px 0 40px 0;
+	padding: 30px;
+	background-color: #FBFBFB;
+}
+.policy-area .content-wrap .last-caution {
+	padding: 40px 60px;
+	background-color: #FBFBFB;
+}
+
+
+/* ====================================================================================
+         SP時
+  ==================================================================================== */
+@media screen and (max-width: 768px) {
+
+/* =====================
+  common
+===================== */
+	main .ttl-wrap .sec-ttl {
+		font-size: 1.6rem;
+		margin-bottom: 15px;
+	}
+	main .ttl-wrap .en {
+		position: absolute;
+		right: 0!important;
+		top: 0!important;
+		left: auto!important;
+		bottom: auto!important;
+    transform: translate(0, -25%)!important;
+		font-size: 4rem!important;
+		line-height: 1.4;
+	}
+	main .ttl-wrap .en.anime {
+		letter-spacing: 0.4rem;
+	}
+
+
+/* =====================
+  policy-area
+===================== */
+	.policy-area {
+		margin-bottom: 40px;
+	}
+	.policy-area .ttl-wrap .sec-ttl {
+		margin-bottom: 10px;
+	}
+	.policy-area .content-wrap .list-wrap {
+		margin-top: 20px;
+		padding: 20px;
+		margin-bottom: 20px;
+	}
+	.policy-area .content-wrap .list-wrap .content {
+		margin-bottom: 40px;
+	}
+	.policy-area .content-wrap .list-wrap .content h3 {
+		font-size: 1.6rem;
+	}
+	.policy-area .content-wrap .list-wrap .content ol li {
+		margin-bottom: 10px;
+	}
+	.policy-area .content-wrap .list-wrap .content ol li ol {
+		margin: 20px 0;
+		padding: 20px;
+	}
+	.policy-area .content-wrap .last-caution {
+		padding: 20px;
+	}
+
+
+	
+}/*  SP // */
+
+

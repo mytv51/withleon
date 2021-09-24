@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* =====================
+  header
+===================== */
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(255,255,255,0.9);
+	width: 100%;
+	height: 110px;
+	z-index: 1000;
+	transition: 0.3s ease-in-out;
+}
+header.change {
+	height: 70px;
+}
+header .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+}
+header .l-item {
+	display: flex;
+	align-items: center;
+}
+header .l-item  .logo {
+	font-size: 3rem;
+	margin-right: 40px;
+}
+header .l-item  .room-name {
+	font-size: 2.6rem;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+}
+
+
+/* ====================================================================================
+         SP時
+  ==================================================================================== */
+@media screen and (max-width: 768px) {
+/* =====================
+  header
+===================== */
+	header {
+		height: 50px;
+	}
+	header.change {
+		height: 30px;
+	}
+	header .l-item  .logo {
+		font-size: 1.8rem;
+		margin-right: 10px;
+	}
+	header .l-item  .room-name {
+		font-size: 1.4rem;
+	}
+
+}
+
+

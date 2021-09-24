@@ -1,0 +1,513 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* =====================
+  header
+===================== */
+header {
+	background-color: transparent;
+}
+header .l-item .logo a {
+	color: #fff;
+}
+header.change {
+	background-color: rgba(255,255,255,0.9);
+}
+header.change .l-item .logo a {
+	color: #333;
+}
+
+
+/* =====================
+  common
+===================== */
+main {
+	margin-top: 0;
+}
+main .ttl-wrap .sec-ttl {
+	font-size: 2.8rem;
+	font-weight: 400;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+	margin-bottom: 20px;
+}
+main .ttl-wrap .en {
+	font-size: 12rem;
+	color: #F5F4F3;
+	letter-spacing: 0;
+	line-height: 0.8;
+	z-index: -1;
+	opacity: 0;
+	transition: 1s ease-in-out;
+}
+main .ttl-wrap .en.anime {
+	opacity: 1;
+	letter-spacing: 0.5rem;
+}
+main .movie-area .ttl-wrap .en {
+	transition: 2s ease-in-out;
+}
+
+
+/* =====================
+  mv-area
+===================== */
+.mv-area {
+	position: relative;
+}
+.mv-area .mv-wrap {
+	/*position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;*/
+}
+.mv-area .catch {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.mv-area .catch span {
+	color: #fff;
+	font-size: 5.2rem;
+	font-weight: 400;
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+	letter-spacing: 0.3rem;
+}
+.mv-area .scroll {
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	z-index: 1;
+	width: 22px;
+	height: 110px;
+}
+.mv-area .scroll span {
+	position: absolute;
+	left: 50%;
+}
+.mv-area .scroll span.txt {
+	bottom: 0;
+	font-size: 1.4rem;
+	color: #fff;
+	transform: rotate(90deg) translate(0,65%);
+}
+.mv-area .scroll span.arrow {
+	top: 0;
+	transform: translate(0,-50%);
+}
+.mv-area .scroll span.arrow::before {
+	content: "";
+	height: 40px;
+	width: 1px;
+	background-color: #fff;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	-webkit-animation: sdb 2s infinite;
+	animation: sdb 2s infinite;
+}
+@-webkit-keyframes sdb {
+	0% {
+		-webkit-transform: translate(0, 0);
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	80% {
+		-webkit-transform: translate(0, 20px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes sdb {
+	0% {
+		transform: translate(0, 0);
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	80% {
+		transform: translate(0, 20px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+
+/* =====================
+  concept-area
+===================== */
+.concept-area .text-box {
+	max-width: 800px;
+	padding: 110px 70px 70px 80px;
+	background-color: #fff;
+	box-shadow: 10px 10px 15px 0 rgba(0,0,0,0.05);
+	position: relative;
+	z-index: 1;
+}
+.concept-area .text-box h3 {
+	font-size: 2.8rem;
+	font-weight: 400;
+	font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+	border-left: 1px solid #333;
+	padding-left: 30px;
+	margin-bottom: 40px;
+}
+.concept-area p {
+	padding-left: 30px;
+}
+.concept-area .ttl-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	margin-top: -170px;
+}
+.concept-area .ttl-wrap .en {
+	margin-bottom: 10px;
+}
+.concept-area figure {
+	max-width: 860px;
+}
+
+
+/* =====================
+  movie-area
+===================== */
+.movie-area {
+	position: relative;
+	margin-top: -25px;
+	padding-bottom: 20px;
+	margin-bottom: 80px;
+}
+.movie-area:after {
+	content: "";
+	width: 80vw;
+	height: 300px;
+	background-color: #333;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: -1;
+}
+.movie-area .ttl-wrap .en {
+	font-size: 17.2rem;
+	position: relative;
+	top: -20px;
+}
+.movie-area .ttl-wrap .en.anime {
+	opacity: 0.2;
+}
+.movie-area .movie-wrap {
+	text-align: center;
+}
+.movie-area .movie-wrap iframe {
+	max-width: 730px;
+	width: 100%;
+	height: 410px;
+}
+
+
+/* =====================
+  room-area
+===================== */
+.room-area {
+	margin-bottom: 80px;
+}
+.room-area .room-type .ttl-wrap {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 40px;
+}
+.room-area .room-type .ttl-wrap p {
+	margin-bottom: 20px;
+}
+.room-area .room-type .ttl-wrap select {
+	min-width: 520px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	background-color: #fff;
+	cursor: pointer;
+}
+.room-area .room-type .ttl-wrap .en {
+	position: absolute;
+	right: 0;
+	bottom: -20px;
+}
+.room-area .room-type .type-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+.room-area .room-type .type-wrap .item {
+	width: 18.5%;
+	margin-right: 1.87%;
+	margin-top: 20px;
+}
+.room-area .room-type .type-wrap .item:nth-child(5n) {
+	margin-right: 0;
+}
+.room-area .room-type .type-wrap .item:nth-child(-n+5) {
+	margin-top: 0;
+}
+.room-area .room-type .type-wrap .item .detail {
+	padding: 20px;
+	background-color: #FBFBFB;
+}
+
+
+/* =====================
+  news-area
+===================== */
+.news-area {
+	margin-bottom: 100px;
+}
+.news-area .ttl-wrap .sec-ttl {
+	font-size: 3.4rem;
+}
+.news-area .news-wrap li a {
+	width: 100%;
+	padding: 20px;
+}
+.news-area .news-wrap li a:hover {
+	opacity: 0.6;
+}
+.news-area .news-wrap li:nth-child(odd) a {
+	background-color: #FBFBFB;
+}
+.news-area .news-wrap li:nth-child(even) a {
+	background-color: #fff;
+}
+.news-area .news-wrap li .day {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+
+/* ====================================================================================
+         SP時
+  ==================================================================================== */
+@media screen and (max-width: 768px) {
+
+/* =====================
+  common
+===================== */
+	main .ttl-wrap .sec-ttl {
+		font-size: 1.6rem;
+		margin-bottom: 15px;
+	}
+	main .ttl-wrap .en {
+		text-align: right;
+		font-size: 4rem!important;
+		line-height: 1.4;
+	}
+	main .ttl-wrap .en.anime {
+		letter-spacing: 0.2rem;
+	}
+
+
+/* =====================
+  mv-area
+===================== */
+	.mv-area {
+		margin-bottom: 20px;
+	}
+	.mv-area .mv-slider {
+		overflow: hidden;
+	}
+	.mv-area .mv-slider figure {
+		display: flex;
+		justify-content: center;
+	}
+	.mv-area .mv-slider figure img {
+		width: auto;
+    height: 70vh;
+    max-width: inherit;
+	}
+	.mv-area .catch span {
+		font-size: 2rem;
+		letter-spacing: normal;
+	}
+	.mv-area .scroll {
+		bottom: 20px;
+		right: 10px;
+		width: 18px;
+		height: 70px;
+	}
+	.mv-area .scroll span.txt {
+		font-size: 1.2rem;
+	}
+	.mv-area .scroll span.arrow::before {
+		height: 15px;
+	}
+
+
+/* =====================
+  concept-area
+===================== */
+	.concept-area {
+		margin-bottom: 15px;
+	}
+	.concept-area .text-box {
+		max-width: 100%;
+		padding: 30px 20px;
+		box-shadow: 0 0 10px 0 rgba(0,0,0,0.05);
+		margin-bottom: 25px;
+	}
+	.concept-area .text-box h3 {
+		font-size: 1.4rem;
+		padding-left: 0;
+		border-left: none;
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+		position: relative;
+	}
+	.concept-area .text-box h3:after {
+		content: "";
+		display: inline-block;
+		width: 30px;
+		height: 1px;
+		background-color: #333;
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		transform: translate(-50%,0);
+	}
+	.concept-area p {
+		font-size: 1.2rem;
+		padding-left: 0;
+		line-height: 2;
+	}
+	.concept-area .ttl-wrap {
+		margin-top: 0;
+	}
+	.concept-area .ttl-wrap .en {
+		margin-bottom: 0;
+	}
+
+
+/* =====================
+  movie-area
+===================== */
+	.movie-area {
+		margin-top: 0;
+		padding-bottom: 0;
+		margin-bottom: 40px;
+	}
+	.movie-area .container {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.movie-area:after {
+		display: none;
+	}
+	.movie-area .ttl-wrap .en {
+		text-align: left;
+		top: 0;
+	}
+	.movie-area .ttl-wrap .en.anime {
+		opacity: 1;
+	}
+	.movie-area .movie-wrap iframe {
+		height: 200px;
+	}
+
+
+
+/* =====================
+  room-area
+===================== */
+	.room-area {
+		margin-bottom: 40px;
+	}
+	.room-area .room-type .ttl-wrap {
+		margin-bottom: 20px;
+	}
+	.room-area .room-type .ttl-wrap p {
+		font-size: 1.2rem;
+		margin-bottom: 10px;
+	}
+	.room-area .room-type .ttl-wrap select {
+		font-size: 1.2rem;
+		min-width: 100%;
+		padding: 5px;
+	}
+	.room-area .room-type .ttl-wrap .en {
+		bottom: inherit;
+		top: 10px;
+	}
+	.room-area .room-wrap {
+		justify-content: flex-start;
+		flex-direction: column-reverse;
+		margin-bottom: 30px;
+	}
+	.room-area .room-type .type-wrap {
+    justify-content: space-between;
+    flex-wrap: wrap;
+	}
+	.room-area .room-type .type-wrap .item {
+		display: none;
+		width: 48%;
+		margin-top: 0!important;
+		margin-bottom: 10px;
+		margin-right: 0!important;
+		vertical-align: top;
+	}
+	.room-area .room-type .type-wrap .item:nth-child(-n+4) {
+		display: block!important;
+	}
+	.room-area .room-type .type-wrap .item .detail {
+		padding: 15px 10px;
+	}
+	.room-area .room-type .type-wrap .item .detail br {
+		display: none;
+	}
+	.room-area .text-link {
+		margin-top: 5px;
+		text-decoration: underline;
+		font-size: 1.2rem;
+		text-align: center;
+	}
+	.room-area .text-link:after {
+		content: "";
+		display: inline-block;
+		width: 4px;
+		height: 4px;
+		border-top: 1px solid #333;
+		border-right: 1px solid #333;
+		transform: rotate(135deg);
+		position: relative;
+		top: -1px;
+		right: -4px;
+	}
+
+
+/* =====================
+  news-area
+===================== */
+	.news-area {
+		margin-bottom: 50px;
+	}
+	.news-area .ttl-wrap .sec-ttl {
+		font-size: 2.2rem;
+	}
+	.news-area .news-wrap li a {
+		padding: 15px;
+	}
+	.news-area .news-wrap li .day {
+		display: block;
+		margin-right: 0;
+		margin-bottom: 5px;
+	}
+
+	
+}/*  SP // */
+
+
