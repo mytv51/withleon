@@ -44,7 +44,12 @@
 			<div class="container">
 				<div class="l-item">
 					<h1 class="logo"><a href="/" class="en">LeonStyle</a></h1>
-					<h2 class="room-name"><?php the_title() ?></h2>
+					<h1 class="room-name">
+						<?php
+						$taxonomy_name = get_the_terms($post->ID, 'danh_sach_toa_nha');
+						echo $taxonomy_name[0]->name;
+						?>
+					</h1>
 				</div>
 				<div class="col-md-6">
 					<div class="vertically-center h-100 flex-end">
@@ -208,7 +213,7 @@
 							<tr>
 								<th>専有面積</th>
 								<?php $square = SCF::get('square') ?>
-								<td><?php echo $square ?></td>
+								<td><?php echo $square ?>㎡</td>
 								<th>帖数</th>
 								<?php $tatami1 = SCF::get('tatami_number_1') ?>
 								<?php $tatami2 = SCF::get('tatami_number_2') ?>
@@ -286,105 +291,104 @@
 					<div class="icon-wrap fade-box">
 						<ul>
 							<?php
-								$array = array(
-									'エレベーター' => 'off',
-									'オートロック' => 'off',
-									'宅配BOX' => 'off',
-									'防犯カメラ' => 'off',
-									'モニターホン' => 'off',
-									'顔認証キー' => 'off',
-									'ネット無料' => 'off',
-									'Wi-Fi有' => 'off',
-									'浴室乾燥機' => 'off',
-									'追い焚き機能' => 'off',
-									'シャンプー' => 'off',
-									'温水洗浄便座' => 'off',
-									'エアコン付' => 'off',
-									'カウンターキッチン' => 'off',
-									'ウォークインクローゼット' => 'off',
-									'シューズインクローゼット' => 'off',
-									'ペット可' => 'off',
-									'2人入居可' => 'off',
-								);
-								$service = SCF::get('service_name');
-								foreach($service as $item){
-									if ( array_key_exists( $item, $array))
-									{
-										$array[$item] = "";
-									}
+							$array = array(
+								'エレベーター' => 'off',
+								'オートロック' => 'off',
+								'宅配BOX' => 'off',
+								'防犯カメラ' => 'off',
+								'モニターホン' => 'off',
+								'顔認証キー' => 'off',
+								'ネット無料' => 'off',
+								'Wi-Fi有' => 'off',
+								'浴室乾燥機' => 'off',
+								'追い焚き機能' => 'off',
+								'シャンプー' => 'off',
+								'温水洗浄便座' => 'off',
+								'エアコン付' => 'off',
+								'カウンターキッチン' => 'off',
+								'ウォークインクローゼット' => 'off',
+								'シューズインクローゼット' => 'off',
+								'ペット可' => 'off',
+								'2人入居可' => 'off',
+							);
+							$service = SCF::get('service_name');
+							foreach ($service as $item) {
+								if (array_key_exists($item, $array)) {
+									$array[$item] = "";
 								}
+							}
 							?>
-							<?php echo '<li class="'.$array['エレベーター'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_elevator.svg" alt="エレベーター"></i>
-								<span>エレベーター</span>
+							<?php echo '<li class="' . $array['エレベーター'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_elevator.svg" alt="エレベーター"></i>
+							<span>エレベーター</span>
 							</li>
-							<?php echo '<li class="'.$array['オートロック'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_key.svg" alt="オートロック"></i>
-								<span>オートロック</span>
+							<?php echo '<li class="' . $array['オートロック'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_key.svg" alt="オートロック"></i>
+							<span>オートロック</span>
 							</li>
-							<?php echo '<li class="'.$array['宅配BOX'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_box.svg" alt="宅配BOX"></i>
-								<span>宅配BOX</span>
+							<?php echo '<li class="' . $array['宅配BOX'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_box.svg" alt="宅配BOX"></i>
+							<span>宅配BOX</span>
 							</li>
-							<?php echo '<li class="'.$array['防犯カメラ'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_camera.svg" alt="防犯カメラ"></i>
-								<span>防犯カメラ</span>
+							<?php echo '<li class="' . $array['防犯カメラ'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_camera.svg" alt="防犯カメラ"></i>
+							<span>防犯カメラ</span>
 							</li>
-							<?php echo '<li class="'.$array['モニターホン'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_mf.svg" alt="モニターホン"></i>
-								<span>モニターホン</span>
+							<?php echo '<li class="' . $array['モニターホン'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_mf.svg" alt="モニターホン"></i>
+							<span>モニターホン</span>
 							</li>
-							<?php echo '<li class="'.$array['顔認証キー'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_facecheck.svg" alt="顔認証キー"></i>
-								<span>顔認証キー</span>
+							<?php echo '<li class="' . $array['顔認証キー'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_facecheck.svg" alt="顔認証キー"></i>
+							<span>顔認証キー</span>
 							</li>
-							<?php echo '<li class="'.$array['ネット無料'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_free.svg" alt="ネット無料"></i>
-								<span>ネット無料</span>
+							<?php echo '<li class="' . $array['ネット無料'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_free.svg" alt="ネット無料"></i>
+							<span>ネット無料</span>
 							</li>
-							<?php echo '<li class="'.$array['Wi-Fi有'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_wifi.svg" alt="Wi-Fi有"></i>
-								<span>Wi-Fi有</span>
+							<?php echo '<li class="' . $array['Wi-Fi有'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_wifi.svg" alt="Wi-Fi有"></i>
+							<span>Wi-Fi有</span>
 							</li>
-							<?php echo '<li class="'.$array['浴室乾燥機'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_dryroom.svg" alt="浴室乾燥機"></i>
-								<span>浴室乾燥機</span>
+							<?php echo '<li class="' . $array['浴室乾燥機'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_dryroom.svg" alt="浴室乾燥機"></i>
+							<span>浴室乾燥機</span>
 							</li>
-							<?php echo '<li class="'.$array['追い焚き機能'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_bath.svg" alt="追い焚き機能"></i>
-								<span>追い焚き機能</span>
+							<?php echo '<li class="' . $array['追い焚き機能'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_bath.svg" alt="追い焚き機能"></i>
+							<span>追い焚き機能</span>
 							</li>
-							<?php echo '<li class="'.$array['シャンプー'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_shower.svg" alt="シャンプードレッサー"></i>
-								<span>シャンプー<br>ドレッサー</span>
+							<?php echo '<li class="' . $array['シャンプー'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_shower.svg" alt="シャンプードレッサー"></i>
+							<span>シャンプー<br>ドレッサー</span>
 							</li>
-							<?php echo '<li class="'.$array['温水洗浄便座'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_wc.svg" alt="温水洗浄便座"></i>
-								<span>温水洗浄便座</span>
+							<?php echo '<li class="' . $array['温水洗浄便座'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_wc.svg" alt="温水洗浄便座"></i>
+							<span>温水洗浄便座</span>
 							</li>
-							<?php echo '<li class="'.$array['エアコン付'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_air.svg" alt="エアコン付"></i>
-								<span>エアコン付</span>
+							<?php echo '<li class="' . $array['エアコン付'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_air.svg" alt="エアコン付"></i>
+							<span>エアコン付</span>
 							</li>
-							<?php echo '<li class="'.$array['カウンターキッチン'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_ck.svg" alt="カウンターキッチン"></i>
-								<span>カウンター<br>キッチン</span>
+							<?php echo '<li class="' . $array['カウンターキッチン'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_ck.svg" alt="カウンターキッチン"></i>
+							<span>カウンター<br>キッチン</span>
 							</li>
-							<?php echo '<li class="'.$array['ウォークインクローゼット'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_wic.svg" alt="ウォークインクローゼット"></i>
-								<span>ウォークイン<br>クローゼット</span>
+							<?php echo '<li class="' . $array['ウォークインクローゼット'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_wic.svg" alt="ウォークインクローゼット"></i>
+							<span>ウォークイン<br>クローゼット</span>
 							</li>
-							<?php echo '<li class="'.$array['シューズインクローゼット'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_sic.svg" alt="シューズインクローゼット"></i>
-								<span>シューズイン<br>クローゼット</span>
+							<?php echo '<li class="' . $array['シューズインクローゼット'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_sic.svg" alt="シューズインクローゼット"></i>
+							<span>シューズイン<br>クローゼット</span>
 							</li>
-							<?php echo '<li class="'.$array['ペット可'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_pet.svg" alt="ペット可"></i>
-								<span>ペット可</span>
+							<?php echo '<li class="' . $array['ペット可'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_pet.svg" alt="ペット可"></i>
+							<span>ペット可</span>
 							</li>
-							<?php echo '<li class="'.$array['2人入居可'].'">' ?>
-								<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_two.svg" alt="2人入居可"></i>
-								<span>2人入居可</span>
+							<?php echo '<li class="' . $array['2人入居可'] . '">' ?>
+							<i><img src="<?php echo get_template_directory_uri(); ?>/images/room/icon_two.svg" alt="2人入居可"></i>
+							<span>2人入居可</span>
 							</li>
 						</ul>
 						<div class="text-link sp">More</div>
@@ -396,6 +400,8 @@
 						</div>
 					</div><!-- sns-area -->
 				</div><!-- container -->
+
+
 				<div class="room-type">
 					<div class="container">
 						<div class="ttl-wrap fade-box">
@@ -406,7 +412,7 @@
 						<div class="fade-box">
 							<div class="tab-btn sp">
 								<ul>
-									<li data-group="a" >A・A’</li>
+									<li data-group="a">A・A’</li>
 									<li data-group="b" class="active">B</li>
 									<li data-group="c">C</li>
 									<li data-group="d">D</li>
@@ -416,208 +422,65 @@
 								</ul>
 							</div>
 							<div class="type-wrap">
-								<a href="" class="item color1 active" data-group="a">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">A・Atype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color1" data-group="b">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Btype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color1" data-group="c">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Ctype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color1" data-group="d">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Dtype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color1" data-group="e">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Etype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color1" data-group="f">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Ftype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color1" data-group="g">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Gtype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color2 active" data-group="a">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">A・Atype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color2" data-group="b">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Btype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color2" data-group="c">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Ctype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color2" data-group="d">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Dtype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color3 active" data-group="a">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">A・Atype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color3" data-group="b">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Btype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
-								<a href="" class="item color3" data-group="c">
-									<figure class="img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/images/room/img_type1.png" alt=""></figure>
-									<div class="detail">
-										<div>
-											<span class="type">Ctype</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">1DK</span>
-										</div>
-										<div>
-											専有面積：<span class="area">27.25</span>㎡
-										</div>
-										<div class="mini">
-											賃料：<span class="place">69,400</span>円～
-										</div>
-									</div>
-								</a><!-- item -->
+								<?php
+								$titles = get_the_terms($post->ID, 'danh_sach_toa_nha');
+								$posts_array = new WP_Query(array(
+									'posts_per_page' => -1,
+									'post_type' => 'property_detail',
+									'tax_query' => array(
+										array(
+											'taxonomy' => 'danh_sach_toa_nha',
+											'field' => 'term_id',
+											'terms' => $titles[0]->term_id
+										)
+									)
+								));
+
+
+
+								if ($posts_array->have_posts()) {
+									while ($posts_array->have_posts()) {
+										$posts_array->the_post();
+										$room_type = SCF::get('room_type');
+										$style_room = SCF::get('style_room');
+										$square = SCF::get('square');
+										$price = SCF::get('price');
+
+										$img_group = SCF::get('interior_group');
+
+
+
+										foreach ($img_group as $fields) {
+											$image = $fields["interior_image"];
+											$imageItem = wp_get_attachment_image_src($image, 'thumbnail');
+										}
+
+
+										echo	'<a href="#" class="item color1 active" data-group="a">';
+										echo	'<figure class="img-wrap">';
+										echo    '<img src="' . esc_url($imageItem[0]) . '" alt="">';
+										echo 	'</figure>';
+										echo	'<div class="detail">';
+										echo	'<div>';
+										echo	'<span class="type">' . $room_type . '</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">' . $style_room . '</span>';
+										echo	'</div>';
+										echo	'<div>';
+										echo	'専有面積：<span class="area">' . $square . '</span>㎡';
+										echo	'</div>';
+										echo	'<div class="mini">';
+										echo	'賃料：<span class="place">' . $price . '</span>円～';
+										echo	'</div>';
+										echo	'</div>';
+										echo	'</a>';
+									}
+								}
+
+								?>
 							</div><!-- type-wrap -->
 						</div>
 					</div><!-- container -->
 				</div><!-- room-type -->
 			</section><!--　room-area　-->
-
 
 			<section class="map-area">
 				<div class="container">
@@ -625,9 +488,13 @@
 						<h3 class="sec-ttl">地図</h3>
 						<div class="en">Map</div>
 					</div>
+					<?php
+					$map = SCF::get('map');
+					$address = SCF::get('address');
+					?>
 					<div class="gmap-wrap fade-box">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13129.710542329854!2d135.5286018!3d34.6439017!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x71a5e049c109dc2!2z44Os44Kq44Oz44Kz44Oz44OV44Kp44O844OI5aSp546L5a-65p2x!5e0!3m2!1sja!2sjp!4v1631202924800!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-						<p class="access">所在地：<span>大阪府大阪市阿倍野区天王寺町北３</span></p>
+						<iframe src="<?php echo $map ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+						<p class="access">所在地：<span><?php echo $address ?></span></p>
 					</div>
 				</div>
 			</section><!--　map-area　-->
@@ -639,8 +506,11 @@
 						<h3 class="sec-ttl">物件紹介動画</h3>
 						<div class="en">Movie</div>
 					</div>
+					<?php
+					$video = SCF::get('video');
+					?>
 					<div class="movie-wrap fade-box">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/imUtUJ5Obe8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<iframe width="560" height="315" src="<?php echo $video ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
 				</div>
 			</section><!--　movie-area　-->
