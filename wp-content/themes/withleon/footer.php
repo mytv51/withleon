@@ -39,6 +39,7 @@
 <script src="<?php echo get_template_directory_uri();?>/js/common.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/js/index.js"></script>
 
+
 <? wp_footer() ?>
 </body>
 </html>

@@ -32,7 +32,10 @@
 
 	<link href="<?php echo get_template_directory_uri(); ?>/css/room.css" rel="stylesheet">
 
-	<title>レオンコンフォート天王寺東 | Leonstyle</title>
+	<title><?php
+			$taxonomy_name = get_the_terms($post->ID, 'danh_sach_toa_nha');
+			echo $taxonomy_name[0]->name;
+			?> | with LEON</title>
 </head>
 
 
@@ -43,7 +46,7 @@
 		<header class="header">
 			<div class="container">
 				<div class="l-item">
-					<h1 class="logo"><a href="/" class="en">LeonStyle</a></h1>
+					<h1 class="logo"><a href="/" class="en">with LEON</a></h1>
 					<h1 class="room-name">
 						<?php
 						$taxonomy_name = get_the_terms($post->ID, 'danh_sach_toa_nha');
@@ -51,10 +54,10 @@
 						?>
 					</h1>
 				</div>
-				<div class="col-md-6">
-					<div class="vertically-center h-100 flex-end">
-						<div class="text-end">add to any chua lam</div>
-					</div>
+				<div class="l-item-sharing-btn pc ">
+					<?php
+					echo do_shortcode("[addtoany]");
+					?>
 				</div>
 			</div>
 		</header>
@@ -70,9 +73,8 @@
 					</div>
 					<div class="slider-wrap">
 						<div class="slider-for">
-							<?php $img_group = SCF::get('interior_group');
-							?>
-							<?php if (!empty($img_group)) : ?>
+							<?php $img_group = SCF::get('interior_group'); ?>
+							<?php if (!empty($img_group[0]['interior_image'])) : ?>
 								<?php
 								foreach ($img_group as $fields) {
 									$image = $fields["interior_image"];
@@ -134,15 +136,21 @@
 							</div>
 						</div><!-- slider-wrap -->
 					</section><!--　exterior-area　-->
+
 					<section class="access-area">
 						<div class="access-wrap fade-box">
 							<div class="ttl-wrap">
 								<h3 class="sec-ttl">所在地</h3>
 								<div class="en sp">Location</div>
 							</div>
-							<?php $address = SCF::get('address') ?>
+							<?php
+							$address = SCF::get('address');
+							$map = SCF::get('map');
+							$video = SCF::get('video');
+							?>
 							<div class="text">
 								<?php echo $address ?>
+
 							</div>
 
 						</div><!-- access-area -->
@@ -204,11 +212,11 @@
 						<table class="fade-box">
 							<tr>
 								<th>部屋タイプ</th>
-								<?php $room_type = SCF::get('room_type') ?>
-								<td><?php echo $room_type ?></td>
+								<?php $room_type = get_the_terms($post->ID, 'danh_sach_loai_phong'); ?>
+								<td><?php echo $room_type[0]->name ?> Type</td>
 								<th>間取り</th>
 								<?php $style_room = SCF::get('style_room') ?>
-								<td><?php echo $style_room ?></td>
+								<td><?php echo $style_room ?> </td>
 							</tr>
 							<tr>
 								<th>専有面積</th>
@@ -217,23 +225,29 @@
 								<th>帖数</th>
 								<?php $tatami1 = SCF::get('tatami_number_1') ?>
 								<?php $tatami2 = SCF::get('tatami_number_2') ?>
-								<td>DK：<?php echo $tatami1 ?><br>洋室：<?php echo $tatami2 ?></td>
+								<?php $tatami3 = SCF::get('tatami_number_3') ?>
+
+								<td>
+									<?php if (!empty($tatami1)) echo 'DK：' . $tatami1 . '<br>' ?>
+									<?php if (!empty($tatami2)) echo 'LDK：' . $tatami2 . '<br>' ?>
+									<?php if (!empty($tatami3)) echo '洋室：' . $tatami3 ?>
+								</td>
 							</tr>
 							<tr>
 								<th>賃料</th>
 								<?php $price = SCF::get('price') ?>
-								<td><?php echo $price ?></td>
+								<td><?php echo $price ?>円</td>
 								<th>共益費</th>
 								<?php $social_fee = SCF::get('social_fee') ?>
-								<td><?php echo $social_fee ?></td>
+								<td><?php echo $social_fee ?>円</td>
 							</tr>
 							<tr>
 								<th>敷金</th>
 								<?php $deposit = SCF::get('deposit') ?>
-								<td><?php echo $deposit ?></td>
+								<td><?php echo $deposit ?>円</td>
 								<th>礼金</th>
 								<?php $gift_fee = SCF::get('gift_fee') ?>
-								<td><?php echo $gift_fee ?></td>
+								<td><?php echo $gift_fee ?>円</td>
 							</tr>
 							<tr>
 								<th>竣工年月</th>
@@ -246,7 +260,7 @@
 							<tr>
 								<th>総戸数</th>
 								<?php $quantity = SCF::get('quantity') ?>
-								<td><?php echo $quantity ?></td>
+								<td><?php echo $quantity ?>戸</td>
 								<th>敷地内駐車場</th>
 								<?php $parking = SCF::get('parking') ?>
 								<td><?php echo $parking ?></td>
@@ -256,6 +270,7 @@
 								<?php $address = SCF::get('address') ?>
 								<td colspan="3"><?php echo $address ?></td>
 							</tr>
+
 						</table>
 						<div class="slider-wrap fade-box">
 							<div class="slider-for">
@@ -396,85 +411,119 @@
 					<div class="sns-area sp fade-box">
 						<p>物件情報を共有する</p>
 						<div class="sns">
-							icon icon icon
+							<?php
+							echo do_shortcode("[addtoany]");
+							?>
 						</div>
 					</div><!-- sns-area -->
 				</div><!-- container -->
-
 
 				<div class="room-type">
 					<div class="container">
 						<div class="ttl-wrap fade-box">
 							<h3 class="sec-ttl">RoomType</h3>
 							<div class="en sp">Type</div>
-							<p class="detail">奇数階はナチュラルカラー、偶数階はモダンカラーとなっております。</p>
+							<?php $room_type_text = SCF::get('room_type_text') ?>
+							<p class="detail"><?php echo $room_type_text ?></p>
 						</div>
 						<div class="fade-box">
 							<div class="tab-btn sp">
 								<ul>
-									<li data-group="a">A・A’</li>
-									<li data-group="b" class="active">B</li>
-									<li data-group="c">C</li>
-									<li data-group="d">D</li>
-									<li data-group="e">E</li>
-									<li data-group="f">F</li>
-									<li data-group="g">G</li>
+									<li data-group="A" class="active">A・A’</li>
+									<li data-group="B">B</li>
+									<li data-group="C">C</li>
+									<li data-group="D">D</li>
+									<li data-group="E">E</li>
+									<li data-group="F">F</li>
+									<li data-group="G">G</li>
 								</ul>
 							</div>
 							<div class="type-wrap">
 								<?php
+
 								$titles = get_the_terms($post->ID, 'danh_sach_toa_nha');
-								$posts_array = new WP_Query(array(
-									'posts_per_page' => -1,
-									'post_type' => 'property_detail',
-									'tax_query' => array(
-										array(
-											'taxonomy' => 'danh_sach_toa_nha',
-											'field' => 'term_id',
-											'terms' => $titles[0]->term_id
-										)
+
+								$cat_term = get_terms(
+									array('danh_sach_loai_phong'),
+									array(
+										'orderby' => 'name',
+										'order' => 'ASC'
 									)
-								));
+								);
+
+								$color_term = get_terms(
+									array('danh_sach_mau'),
+									array(
+										'orderby' => 'name',
+										'order' => 'ASC'
+									)
+								);
+								foreach ($cat_term as $item) {
+									foreach ($color_term as $color) {
+
+										$posts_array = new WP_Query(array(
+											'posts_per_page' => -1,
+											'post_type' => 'property_detail',
 
 
+											'tax_query' => array(
+												array(
+													'taxonomy' => 'danh_sach_toa_nha',
+													'field' => 'term_id',
+													'terms' => $titles[0]->term_id
+												),
+												array(
+													'taxonomy' => 'danh_sach_loai_phong',
+													'field' => 'term_id',
+													'terms' => $item->term_id
+												),
+												array(
+													'taxonomy' => 'danh_sach_mau',
+													'field' => 'term_id',
+													'terms' => $color->term_id
+												)
+											)
+										));
 
-								if ($posts_array->have_posts()) {
-									while ($posts_array->have_posts()) {
-										$posts_array->the_post();
-										$room_type = SCF::get('room_type');
-										$style_room = SCF::get('style_room');
-										$square = SCF::get('square');
-										$price = SCF::get('price');
-
-										$img_group = SCF::get('interior_group');
-
-
-
-										foreach ($img_group as $fields) {
-											$image = $fields["interior_image"];
-											$imageItem = wp_get_attachment_image_src($image, 'thumbnail');
+										if ($posts_array->have_posts()) {
+											while ($posts_array->have_posts()) {
+												$posts_array->the_post();
+												$style_room = SCF::get('style_room');
+												$square = SCF::get('square');
+												$price = SCF::get('price');
+												$img_group = SCF::get('interior_group');
+												$image = $img_group[0]["interior_image"];
+												$imageItem = wp_get_attachment_image_src($image, 'thumbnail', false);
+												$room_type = get_the_terms($post->ID, 'danh_sach_loai_phong');
+												$room_color = get_the_terms($post->ID, 'danh_sach_mau');
+												$link = get_permalink();
+												if ($room_type[0]->name == "A") {
+													echo	'<a href="' . $link . '" class="item color1 active" data-group="' . $room_type[0]->name . '">';
+												} else {
+													echo	'<a href="' . $link . '" class="item color1 " data-group="' . $room_type[0]->name . '">';
+												}
+												echo	'<figure class="img-wrap">';
+												echo    '<img src="' . esc_url($imageItem[0]) . '" alt="">';
+												echo 	'</figure>';
+												echo	'<div class="detail">';
+												echo	'<div>';
+												echo	'<span class="type">' .  $room_type[0]->name . 'Type</span>';
+												echo	'<span class="pc">/</span>';
+												echo	'<span class="color">' . $room_color[0]->name . '</span>';
+												echo	'/<span class="size">' . $style_room . '</span>';
+												echo	'</div>';
+												echo	'<div>';
+												echo	'専有面積：<span class="area">' . $square . '</span>㎡';
+												echo	'</div>';
+												echo	'<div class="mini">';
+												echo	'賃料：<span class="place">' . $price . '</span>円～';
+												echo	'</div>';
+												echo	'</div>';
+												echo	'</a>';
+											}
 										}
-
-
-										echo	'<a href="#" class="item color1 active" data-group="a">';
-										echo	'<figure class="img-wrap">';
-										echo    '<img src="' . esc_url($imageItem[0]) . '" alt="">';
-										echo 	'</figure>';
-										echo	'<div class="detail">';
-										echo	'<div>';
-										echo	'<span class="type">' . $room_type . '</span><span class="pc">/</span><span class="color">color1</span>/<span class="size">' . $style_room . '</span>';
-										echo	'</div>';
-										echo	'<div>';
-										echo	'専有面積：<span class="area">' . $square . '</span>㎡';
-										echo	'</div>';
-										echo	'<div class="mini">';
-										echo	'賃料：<span class="place">' . $price . '</span>円～';
-										echo	'</div>';
-										echo	'</div>';
-										echo	'</a>';
 									}
 								}
-
 								?>
 							</div><!-- type-wrap -->
 						</div>
@@ -482,38 +531,38 @@
 				</div><!-- room-type -->
 			</section><!--　room-area　-->
 
+
 			<section class="map-area">
 				<div class="container">
 					<div class="ttl-wrap fade-box">
 						<h3 class="sec-ttl">地図</h3>
 						<div class="en">Map</div>
 					</div>
-					<?php
-					$map = SCF::get('map');
-					$address = SCF::get('address');
-					?>
+
 					<div class="gmap-wrap fade-box">
-						<iframe src="<?php echo $map ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+						<?php echo $map ?>
 						<p class="access">所在地：<span><?php echo $address ?></span></p>
 					</div>
 				</div>
 			</section><!--　map-area　-->
 
-
-			<section class="movie-area">
-				<div class="container">
-					<div class="ttl-wrap fade-box">
-						<h3 class="sec-ttl">物件紹介動画</h3>
-						<div class="en">Movie</div>
-					</div>
-					<?php
-					$video = SCF::get('video');
-					?>
-					<div class="movie-wrap fade-box">
-						<iframe width="560" height="315" src="<?php echo $video ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</div>
-				</div>
-			</section><!--　movie-area　-->
+			<?php
+			if (!empty($video)) {
+				echo	'<section class="movie-area">';
+				echo '<div class="container">';
+				echo '<div class="ttl-wrap fade-box">';
+				echo '<h3 class="sec-ttl">物件紹介動画</h3>';
+				echo '<div class="en">Movie</div>';
+				echo '</div>';
+				echo '<div class="movie-wrap fade-box">';
+				echo ' ' . $video . ' ';
+				echo '</div>';
+				echo '</div>';
+				echo	'</section>';
+			} else {
+				echo '<div></div>';
+			}
+			?>
 
 
 			<section class="contact-area container fade-box">
@@ -529,19 +578,19 @@
 						</div>
 						<p>空室確認や入居お申し込みに関しては、<br>リアプロをご利用頂くようお願い致します。</p>
 					</div><!-- item -->
+
 					<div class="item">
 						<div class="btn-wrap">
-							<a href="" class="btn black"><span class="download">ダウンロード</span>
+							<a href="<?php zip_file(); ?>" class="btn black"><span class="download">ダウンロード</span>
 								<div class="anim"></div>
 							</a>
+
 						</div>
 						<p>当Webサイトの物件写真はポータルサイト等の<br>掲載用にお使い頂けますのでご利用くださいませ。</p>
 					</div><!-- item -->
 				</div><!-- link-wrap -->
 			</section><!--　contact-area　-->
-
 		</main>
-
 
 		<footer>
 			<div class="container">
@@ -561,12 +610,23 @@
 	<script src="https://use.typekit.net/fya1swr.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery-2.2.4.min.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/assets/plugin/slick/slick.min.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/assets/plugin/lightbox/lightbox.min.js"></script>
+	<!-- -->
 
 	<script src="<?php echo get_template_directory_uri(); ?>/js/common.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/room.js"></script>
+	<script async src="https://static.addtoany.com/menu/page.js"></script>
 
 
+	<script>
+		$(document).ready(function() {
+			$('.download-button').click(function() {
+
+				var ajaxurl = '<?php echo get_template_part("wp-content\\themes\\withleon\\zip_file.php"); ?>';
+
+
+			});
+		});
+	</script>
 </body>
 
 </html>

@@ -12,16 +12,11 @@
 							'post_type' => 'property'
 						));
 						if ($property->have_posts()) {
-							$property->the_post();
-							$titles = get_children(array(
-								'post_type' => 'property'
-							));
-							$url = SCF::get('url');
-							$property_name = SCF::get('property_name');
-							if ($titles) {
-								foreach ($titles as $title) {
-									echo '<option value=' . $url . '>' . $property_name . '</option>';
-								}
+							while ($property->have_posts()) {
+								$property->the_post();
+								$url = SCF::get('url');
+								$property_name = SCF::get('property_name');
+								echo '<option value=' . $url . '>' . $property_name . '</option>';
 							}
 						}
 
@@ -34,21 +29,30 @@
 		<div class="container">
 			<div class="fade-box">
 				<div class="type-wrap">
+
 					<?php
 					$property = new WP_Query(array(
-						'post_type' => 'property',
+						'post_type' => 'property'
 					));
+					if ($property->have_posts()) {
+						while ($property->have_posts()) {
+							$property->the_post();
+							$url = SCF::get('url');
+							$property_name = SCF::get('property_name');
+							$image_thumbnail = SCF::get('thumbnail_image');
+							$image_thumbnail_item = wp_get_attachment_image_src($image_thumbnail);
+							echo '<a href="' . $url . '" class="item">';
+							echo	'<figure class="img-wrap">';
+							echo '<img src="' . esc_url($image_thumbnail_item[0]) . '" alt="">';
+							echo '</figure>';
+							echo	'<div class="detail">';
+							echo		'<div class="name">' . $property_name . '</div>';
+							echo	'</div>';
+							echo	'</a>';
+						}
+					}
+
 					?>
-					<?php $getposts = new WP_Query($args) ?>
-					<?php while ($getposts->have_posts()) : $getposts->the_post(); ?>
-						<a href="<?php the_permalink(); ?>" class="item">
-							<figure class="img-wrap"><img src="<?php the_post_thumbnail(); ?>" alt=""></figure>
-							<div class="detail">
-								<div class="name"><?php the_title(); ?></div>
-							</div>
-						</a>
-					<?php endwhile;
-					wp_reset_postdata(); ?>
 				</div><!-- type-wrap -->
 				<div class="text-link sp">More</div>
 			</div>
